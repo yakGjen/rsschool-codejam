@@ -1,9 +1,9 @@
 function recursion(node){
-  var queue = [];
-  var values = [];
+  let queue = [];
+  let values = [];
   queue.push(node);
   while(queue.length > 0){
-    var tempNode = queue.shift();
+    let tempNode = queue.shift();
     values.push(tempNode.value);
     if (tempNode.left){
       queue.push(tempNode.left);

@@ -1,18 +1,45 @@
-function recursion(node){
-  let queue = [];
-  let values = [];
-  queue.push(node);
-  while(queue.length > 0){
-    let tempNode = queue.shift();
-    values.push(tempNode.value);
-    if (tempNode.left){
-      queue.push(tempNode.left);
-    }
-    if (tempNode.right){
-      queue.push(tempNode.right);
-    }
+let result = [];
+  let b = 1;
+function recursion(...data) {
+  let smth = [];
+  let arr = [];
+  
+  if (data[0] instanceof Array) {
+    data[0].forEach((item, i) => {
+      smth.push(data[0][i].value);
+
+      if( data[0][i].left && data[0][i].right) {
+        arr.push(data[0][i].left);
+        arr.push(data[0][i].right);
+      }
+    });
+    result.push(smth);
+  } else {
+    data.forEach((item, i) => {
+      smth.push(data[i].value);
+
+      if( data[i].left && data[i].right) {
+        arr.push(data[i].left);
+        arr.push(data[i].right);
+      }
+    });
+    result.push(smth);
   }
-  return values;
+  
+  //result.push(smth);
+  
+  let a = arr.every(item => {
+    //console.log(item !== undefined);
+    return item !== undefined;
+  });
+  //console.log(a);
+  if (b <= 2) {
+    b++;
+    recursion(arr);
+  }
+  
+  
+  return result;
 }
   
 let tree = {
@@ -36,6 +63,6 @@ let tree = {
     }
   }
 };
-
+  
 let array = recursion(tree);
-console.log(array);
+console.log(array); // [[100], [90, 120], [70,99,110,130]]
